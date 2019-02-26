@@ -13,10 +13,12 @@ passport.use(new GoogleStrategy({
       if (user) {
         return cb(null, user);
       } else {
+        var image = profile.photos[0].value.substring(0, profile.photos[0].value.indexOf('?'));
         var newUser = new User({
           name: profile.displayName,
           email: profile.emails[0].value,
-          googleId: profile.id
+          googleId: profile.id,
+          image: image
         });
         newUser.save(function(err) {
           if (err) return cb(err);
@@ -32,7 +34,7 @@ passport.serializeUser(function(user, done) {
 });
 
 passport.deserializeUser(function(id, done) {
-    User.findById(id, function(err, user) {
-      done(err, user);
-    });
+  User.findById(id, function(err, user) {
+    done(err, user);
   });
+});

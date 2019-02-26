@@ -1,6 +1,7 @@
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
+// var exphbs = require('express-handlebars');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var session = require('express-session');
@@ -8,11 +9,15 @@ var passport = require('passport');
 require('dotenv').config();
 require('./config/database');
 
-
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
 var app = express();
+
+// app.engine('handlebards', exphbs({
+//   defaultLayout: 'main'
+// }));
+// app.set('view engine', 'handlebars');
 
 require('./config/passport');
 
