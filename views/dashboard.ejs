@@ -1,0 +1,16 @@
+<%- include('./partials/header') %>
+
+<h1>Welcome <%= user.name %></h1>
+<h3>Your Recipes</h3>
+
+<% if (user) { %>
+    <%- include('./partials/addrecipe') %>
+<% } else { %>
+
+<% } %>
+
+<%- include('./partials/footer') %>
+
+</body>
+
+</html>

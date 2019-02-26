@@ -4,30 +4,30 @@
   <h1>Welcome</h1>
   <p>Welcome to Recipe Books!</p>
   <p>Dicover delicious paleo recipes! Or create your own. Set them to public or private and comment on others' receipes.</p>
-  <div>
-    <div class="navbar-fixed">
-      <ul class="right">
-        <li>
-        <% if (user) { %>
-          <!-- <a href="/logout" class="btn red darken-1"><i class="material-icons left">trending_flat</i>Log Out</a> -->
-        <% } else { %>
-          <a href="/auth/google" class="btn red darken-1"><i class="material-icons left">vpn_key</i>Login with Google</a>
-        <% } %>
-        </li>
-      </ul>
-    </div>
 
+    <div class="navbar-fixed">
+
+    </div>
+    <% if (user) { %>
+      <%- include('./partials/addrecipe') %>
+    <% } else { %>
+
+    <% } %>
   
-  <!-- <script>
+
+  <%- include('./partials/footer') %>
+  
+  <script>
     $(document).ready(() => {
       $('.button-collapse').sideNav();
+      $('select').material_select();
     });
-  </script> -->
+  </script>
   
-  <!-- <script
+  <script
   src="https://code.jquery.com/jquery-3.3.1.js"
   integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
-  crossorigin="anonymous"></script> -->
+  crossorigin="anonymous"></script>
 </body>
 
 </html>

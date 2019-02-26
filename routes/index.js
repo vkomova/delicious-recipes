@@ -1,18 +1,23 @@
 var express = require('express');
 var router = express.Router();
 var passport = require('passport');
-var userCtrl = require('../controllers/user')
+var userCtrl = require('../controllers/user');
+var {ensureAuthenticated, ensureGuest} = require('../helpers/auth')
 
 /* GET users listing. */
 router.get('/', userCtrl.index);
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
+router.get('/', ensureGuest, function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
-router.get('/dashboard', function(req, res, next) {
-  res.send('Dashboard');
+router.get('/about', function(req, res, next) {
+  res.render('about', {user: req.user});
+});
+
+router.get('/dashboard', ensureAuthenticated, function(req, res, next) {
+  res.render('dashboard', {user: req.user});
 });
 
 router.get('/auth/google', passport.authenticate(
@@ -23,7 +28,7 @@ router.get('/auth/google', passport.authenticate(
 router.get('/oauth2callback', passport.authenticate(
   'google',
   {
-    successRedirect : '/',
+    successRedirect : '/dashboard',
     failureRedirect : '/'
   }
 ));

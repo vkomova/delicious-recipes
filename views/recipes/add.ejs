@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Paleo Recipe Login Page</title>
+  <!-- Google Icon Fonts used by Materialize -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!-- Materialize CSS Framework -->
+  <link rel="stylesheet" href="stylesheets/style.css" />
+  <!-- JavaScript for Materialize -->
+  <script defer
+  src="https://code.jquery.com/jquery-3.3.1.js"
+  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+  crossorigin="anonymous"></script>
+  <script src="https://cdn.ckeditor.com/4.11.3/standard/ckeditor.js"></script>
+</head>
+
+<h1>Add Recipe</h1>
+<div class="row">
+    <form action="/recipes" method="post" class="col s12">
+        <div class="row">
+            <div class="input-field">
+                <input type="text" name="title">
+                <label for="title">Recipe Name</label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="input-field">
+                <select name="status">
+                    <option value="public" selected>Public</option>
+                    <option value="private">Private</option>
+                    <option value="unpublished">Unpublished</option>
+                </select>
+                <label for="status">Status</label>
+            </div>
+        </div>
+
+        <div class="row">
+            <p>
+                <input type="checkbox" name="allowComments" class="filled-in" id="filled-in-box" checked="checked">
+                <label for="filled-in-box">Allow Comments</label>
+            </p>
+        </div>
+
+        <div class="row">
+            <div class="input-field">
+                <h4>Add Your Recipe</h4>
+                <textarea name="body"></textarea>
+            </div>
+        </div>
+
+        <input type="submit" value="Save" class="btn">
+    </form>
+</div>
+
+    <script>
+        CKEDITOR.replace('body');
+    </script>
+   
+</body>
+
+</html>

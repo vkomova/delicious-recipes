@@ -1,7 +1,7 @@
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
-// var exphbs = require('express-handlebars');
+var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var session = require('express-session');
@@ -11,13 +11,12 @@ require('./config/database');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var recipesRouter = require('./routes/recipes');
 
 var app = express();
 
-// app.engine('handlebards', exphbs({
-//   defaultLayout: 'main'
-// }));
-// app.set('view engine', 'handlebars');
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json())
 
 require('./config/passport');
 
@@ -40,6 +39,7 @@ app.use(passport.session());
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/recipes', recipesRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
