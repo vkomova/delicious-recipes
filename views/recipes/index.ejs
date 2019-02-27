@@ -5,10 +5,8 @@
 <body>
     <% recipes.forEach(function(r) { %>
     <h5><%= r.title %></h5>
-    <p><%= r.body %>
-    <%= r.user %></p>
-    
-    <br>
+    <p><%= r.body %><br>
+    By <%= r.user %></p><br>
     <% }); %>
 </body>
     
