@@ -1,6 +1,5 @@
 <%- include('./partials/header') %>
 
-<h1>Welcome <%= user.name %></h1>
 <h3>Your Recipes</h3>
 
 <% if (user) { %>
@@ -8,6 +7,25 @@
 <% } else { %>
 
 <% } %>
+
+
+
+<% if (recipe) { %>
+    <% recipe.forEach(function(r) { %>
+        <h5><%= r.title %></h5>
+        <%= r.body %><br>
+        Status <%= r.status %><br>
+        Added on <%= r.date %><br>
+        <a href="/recipes/edit/<%=r._id%>"><i class="fa fa-pencil"></i>Edit</a>
+        <form action="/recipes/<%=r._id%>?_method=DELETE" method="POST" id="delete-form">
+            <button type="submit" class="btn red"><i class="fa fa-remove"></i>Delete</button>
+        </form>
+        <% }); %>
+<% } else { %>
+    <p>No recipes available yet.</p>
+<% } %><br><br>
+
+
 
 <%- include('./partials/footer') %>
 

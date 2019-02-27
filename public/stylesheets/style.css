@@ -13,3 +13,8 @@ a {
 main {
   flex: 1 0 auto;
 }
+
+#addbody {
+  background-color: coral;
+  font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+}

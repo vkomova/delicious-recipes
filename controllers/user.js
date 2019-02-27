@@ -1,9 +1,7 @@
 const User = require('../models/user');
 
 module.exports = {
-  index,
-//   addFact,
-//   delFact
+  index
 };
 
 function index(req, res, next) {

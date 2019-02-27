@@ -2,29 +2,47 @@ var Recipe = require('../models/recipe');
 
 module.exports = {
     index,
-    new: newRecipe,
-    create
+    // new: newRecipe,
+    create,
+    show,
+    edit,
+    update,
+    deleteRecipe
 };
 
-function index(req, res, next) {
-    res.render('index', {
-        name: req.query.name,
-        user: req.user,
-        title: "recipes"
-    });
-}
+function deleteRecipe (req, res) {
+    Recipe.findByIdAndDelete(req.params.id)
+    .then(function(recipe) {
+        res.redirect('/dashboard')
+    })
+};
 
-function newRecipe(req, res) {
-    res.render('recipes/new', { title: 'Add Movie' })
-}
+function edit (req, res) {
+    Recipe.findOne({_id: req.params.id})
+    .then(recipes => {
+        res.render('recipes/edit', { 
+            recipes: recipes
+        })
+    })
+};
+
+function index(req, res) {
+    Recipe.find({status:'public'})
+        .populate('user')
+        .then(recipes => {
+            res.render('recipes/index', {
+                user: req.user,
+                recipes: recipes
+            });
+        });
+};
+
+// function newRecipe(req, res) {
+//     res.render('recipes/new', { title: 'Add Recipe' })
+// }
 
 function create(req, res) {
-    let allowComments;
-    if (req.body.allowComments) {
-        allowComments = true;
-    } else {
-        allowComments = false;
-    }
+    let allowComments = !!req.body.allowComments;
     const newRecipe = {
         title: req.body.title,
         body: req.body.body,
@@ -39,3 +57,41 @@ function create(req, res) {
         })
 };
 
+function update (req, res) {
+    Recipe.findOne({_id: req.params.id})
+    .then(recipe => {
+      recipe.title = req.body.title
+      recipe.status = req.body.status
+      recipe.allowComments = req.body.allowComments
+      recipe.body = req.body.body
+      recipe.save()
+      res.redirect('/dashboard')
+    })
+};
+
+function show (req, res) {
+    Recipe.findOne({_id: req.params.id})
+    .populate('user')
+    .then(recipe => {
+        res.render('recipes/show', { 
+            title: recipe.title,
+            body: recipe.body,
+            body = body.replace('<p>', '').replace('</p>', ''),
+            status: recipe.status,
+            date: recipe.date,
+            user: req.user
+        })
+    })
+};
+
+// function show(req, res) {
+//     Recipe.findById(req.params.id, function (err, recipe) {
+//         res.render('recipes/show', { 
+//             title: recipe.title,
+//             body: recipe.body,
+//             status: recipe.status,
+//             date: recipe.date,
+//             user: req.user
+//         });
+//     })
+// };

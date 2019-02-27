@@ -2,6 +2,8 @@ var express = require('express');
 var router = express.Router();
 var passport = require('passport');
 var userCtrl = require('../controllers/user');
+var Recipe = require('../models/recipe');
+var User = require('../models/user');
 var {ensureAuthenticated, ensureGuest} = require('../helpers/auth')
 
 /* GET users listing. */
@@ -16,14 +18,25 @@ router.get('/about', function(req, res, next) {
   res.render('about', {user: req.user});
 });
 
-// router.get('/recipes', function(req, res, next) {
-//   res.render('recipes/index', {user: req.user});
+// router.get('/dashboard', ensureAuthenticated, function(req, res, next) {
+//   res.render('dashboard', {user: req.user});
 // });
 
-
 router.get('/dashboard', ensureAuthenticated, function(req, res, next) {
-  res.render('dashboard', {user: req.user});
+  Recipe.find({user:req.user.id})
+  .then(function(recipe) {
+    res.render('dashboard', {
+      recipe,
+      user: req.user
+    });
+  });
 });
+
+// title: recipe.title,
+// body: recipe.body,
+// status: recipe.status,
+// date: recipe.date,
+// user: req.user
 
 router.get('/auth/google', passport.authenticate(
   'google',

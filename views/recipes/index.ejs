@@ -1,12 +1,14 @@
 <%- include('../partials/header') %>
 
 <h1>Recipes</h1>
-
 <body>
     <% recipes.forEach(function(r) { %>
     <h5><%= r.title %></h5>
-    <p><%= r.body %><br>
-    By <%= r.user %></p><br>
+    <%= r.body %><br>
+    By <%= r.user.name %><br>
+    <a href="/recipes/show/<%=r._id%>">View Recipe</a><br>
+    <a href="/recipes/edit/<%=r._id%>"><i class="fa fa-pencil"></i></a></p>
+    <br>
     <% }); %>
 </body>
     
