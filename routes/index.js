@@ -16,6 +16,11 @@ router.get('/about', function(req, res, next) {
   res.render('about', {user: req.user});
 });
 
+// router.get('/recipes', function(req, res, next) {
+//   res.render('recipes/index', {user: req.user});
+// });
+
+
 router.get('/dashboard', ensureAuthenticated, function(req, res, next) {
   res.render('dashboard', {user: req.user});
 });
@@ -32,14 +37,6 @@ router.get('/oauth2callback', passport.authenticate(
     failureRedirect : '/'
   }
 ));
-
-// router.get('/verify', function(req, res) {
-//   if(req.user){
-//     console.log(req.user);
-//   } else {
-//     console.log('Not Auth');
-//   }
-// });
 
 router.get('/logout', function(req, res){
   req.logout();

@@ -1,1 +1,16 @@
-Recipes
+<%- include('../partials/header') %>
+
+<h1>Recipes</h1>
+
+<body>
+    <% recipes.forEach(function(r) { %>
+    <h5><%= r.title %></h5>
+    <p><%= r.body %>
+    <%= r.user %></p>
+    
+    <br>
+    <% }); %>
+</body>
+    
+  
+<%- include('../partials/footer') %>
