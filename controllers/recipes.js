@@ -76,7 +76,6 @@ function show (req, res) {
         res.render('recipes/show', { 
             title: recipe.title,
             body: recipe.body,
-            body = body.replace('<p>', '').replace('</p>', ''),
             status: recipe.status,
             date: recipe.date,
             user: req.user
