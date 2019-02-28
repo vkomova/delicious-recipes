@@ -15,7 +15,9 @@
         <h5><%= r.title %></h5>
         <%- r.body %>
         Status <%= r.status %><br>
-        Added on <%= r.date %><br>
+        Added on <% var gIndex = r.date.toString().split('').indexOf("G") %>
+        <% gIndex %>
+        <%= r.date.toString().slice(0, gIndex) %><br>
         <a href="/recipes/edit/<%=r._id%>"><i class="fa fa-pencil"></i>Edit</a>
         <a href="/recipes/show/<%=r._id%>">Show</a>
         <form action="/recipes/<%=r._id%>?_method=DELETE" method="POST" id="delete-form">
@@ -25,7 +27,5 @@
 <% } else { %>
     <p>No recipes available yet.</p>
 <% } %><br><br>
-
-
 
 <%- include('./partials/footer') %>

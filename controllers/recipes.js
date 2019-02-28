@@ -7,7 +7,8 @@ module.exports = {
     show,
     edit,
     update,
-    deleteRecipe
+    deleteRecipe,
+    comment
 };
 
 function deleteRecipe (req, res) {
@@ -77,12 +78,30 @@ function show (req, res) {
     .populate('user')
     .then(recipe => {
         res.render('recipes/show', { 
+            recipe: recipe,
             title: recipe.title,
             body: recipe.body,
             status: recipe.status,
             date: recipe.date,
             allowComment: recipe.allowComment,
             user: recipe.user,
+            user2: req.user,
         })
     })
 };
+
+function comment (req, res) {
+    Recipe.findOne({_id: req.params.id})
+    .then(recipe => {
+        var newComment = {
+            commentBody: req.body.commentBody,
+            commentUser: req.user.id
+        }
+        recipe.comments.unshift(newComment);
+        recipe.save()
+        .then(recipe => {
+            res.redirect(`/recipes/show/${recipe.id}`)
+        })
+    });
+};
+

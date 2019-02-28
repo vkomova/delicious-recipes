@@ -23,4 +23,6 @@ router.get('/edit/:id', recipesCtrl.edit);
 router.post('/', recipesCtrl.create);
 router.post('/:id', recipesCtrl.update);
 
+router.post('/comment/:id', recipesCtrl.comment);
+
 module.exports = router;

@@ -4,7 +4,7 @@ var passport = require('passport');
 var userCtrl = require('../controllers/user');
 var Recipe = require('../models/recipe');
 var User = require('../models/user');
-var {ensureAuthenticated, ensureGuest} = require('../helpers/auth')
+var {ensureAuthenticated, ensureGuest} = require('../helpers/auth');
 
 /* GET users listing. */
 router.get('/', userCtrl.index);
@@ -31,12 +31,6 @@ router.get('/dashboard', ensureAuthenticated, function(req, res, next) {
     });
   });
 });
-
-// title: recipe.title,
-// body: recipe.body,
-// status: recipe.status,
-// date: recipe.date,
-// user: req.user
 
 router.get('/auth/google', passport.authenticate(
   'google',

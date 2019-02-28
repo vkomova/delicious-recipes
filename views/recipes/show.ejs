@@ -53,17 +53,25 @@ flex-direction: column;">
     </nav>
 
     <h3><%= title %></h3>
-
     <p><%- body %></p>
-    Submitted on <%= date %><br>
+    <% var gIndex = date.toString().split('').indexOf("G") %>
+    <% gIndex %>
+    Submitted on <%= date.toString().slice(0, gIndex) %><br>
     By <%= user.name %><br><br>
 
 
     <% if (allowComment) { %>
     <p>
         Comments:
-        <% if (user) { %>
+        <% if (user2) { %>
         Can leave comment.
+        <form method="post" action="/recipes/comment/<%=recipe._id%>">
+            <div class="input-field">
+                <textarea name="commentBody" class="materialize-textarea"></textarea>
+                <label>Add Comment</label>
+            </div>
+            <input type="submit" value="Submit" class="btn">
+        </form>
         <% } else { %>
         Please <a href="/auth/google">login </a> to leave a comment.
         <% } %>

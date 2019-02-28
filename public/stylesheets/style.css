@@ -22,6 +22,17 @@ main {
   font-size: 16px;
 }
 
+img {
+  width: 50%;
+  height: auto;
+}
+
+.image {
+  display: inline-grid;
+  justify-self: center;
+  align-self: center;
+}
+
 .myButton {
 	background-color:#f88379;
 	-moz-border-radius:28px;
