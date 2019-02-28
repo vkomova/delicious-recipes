@@ -1,5 +1,5 @@
 # Recipebook Web App
-by Valerie Komova for General Assembly Project 2 
+by Valerie Komova for General Assembly Project 2  
 Click [here](https://wdi-delicious-recipes.herokuapp.com/) to try it out!
 
 
