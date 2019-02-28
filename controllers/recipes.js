@@ -38,10 +38,6 @@ function index(req, res) {
         });
 };
 
-// function newRecipe(req, res) {
-//     res.render('recipes/new', { title: 'Add Recipe' })
-// }
-
 function create(req, res) {
     let allowComment;
     if(req.body.allowComment){
@@ -76,6 +72,10 @@ function update (req, res) {
 function show (req, res) {
     Recipe.findOne({_id: req.params.id})
     .populate('user')
+    // .populate({
+    //     path: 'comments',
+    //     populate: 'commentUser'
+    // })
     .then(recipe => {
         res.render('recipes/show', { 
             recipe: recipe,
@@ -86,6 +86,7 @@ function show (req, res) {
             allowComment: recipe.allowComment,
             user: recipe.user,
             user2: req.user,
+            comments: recipe.comments
         })
     })
 };

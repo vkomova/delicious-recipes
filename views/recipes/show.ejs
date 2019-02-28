@@ -62,9 +62,8 @@ flex-direction: column;">
 
     <% if (allowComment) { %>
     <p>
-        Comments:
+        Add comment:
         <% if (user2) { %>
-        Can leave comment.
         <form method="post" action="/recipes/comment/<%=recipe._id%>">
             <div class="input-field">
                 <textarea name="commentBody" class="materialize-textarea"></textarea>
@@ -78,8 +77,15 @@ flex-direction: column;">
     </p>
     <% } else { %>
     <p>No comments allowed.</p>
-    <% } %><br><br>
+    <% } %><br>
 
+
+    <% recipe.comments.forEach(function(c) { %>
+        <p>Previous comments:<br>
+            <%= c.commentBody %><br>
+        by <%= c.commentUser %>
+        on <%= c.commentDate %></p>
+    <% }); %>
 
 
 

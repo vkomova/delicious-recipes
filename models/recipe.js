@@ -29,7 +29,7 @@ var recipeSchema = new Schema({
     },
     commentUser: {
       type: Schema.Types.ObjectId,
-      ref: 'users'
+      ref: 'User'
     }
   }],
   user: {
