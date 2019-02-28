@@ -30,7 +30,7 @@ Recipebook was imagined, designed, and developed in Santa Monica, CA for General
 * Heroku
 * oAuth
 * RESTful APIs
-* Trello
+* Trello - click [here](https://trello.com/b/F2itMzfQ) for Trello planning/mapping board
 
 
 ## Getting Started
