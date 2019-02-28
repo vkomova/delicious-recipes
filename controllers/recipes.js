@@ -78,7 +78,8 @@ function show (req, res) {
             body: recipe.body,
             status: recipe.status,
             date: recipe.date,
-            user: req.user
+            allowComment: recipe.allowComment,
+            user: req.user,
         })
     })
 };

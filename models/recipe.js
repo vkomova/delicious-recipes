@@ -16,7 +16,7 @@ var recipeSchema = new Schema({
   },
   allowComment: {
     type: Boolean,
-    default: true
+    default: false
   },
   comments: [{
     commentBody: {

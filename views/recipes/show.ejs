@@ -4,10 +4,19 @@
     <h3><%= title %></h3>
 </div>
 <div>
-    <p><%= body %></p>
+    <p><%- body %></p>
     Submitted on <%= date %><br>
     By <%= user.name %><br><br>
 </div>
+
+
+<% if (allowComment) { %>
+    <p>
+    Comments:
+    </p>
+<% } else { %>
+    <p>No comments allowed.</p>
+<% } %><br><br>
 
     
   
