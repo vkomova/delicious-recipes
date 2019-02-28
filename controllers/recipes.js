@@ -42,12 +42,15 @@ function index(req, res) {
 // }
 
 function create(req, res) {
-    let allowComments = !!req.body.allowComments;
+    let allowComment;
+    if(req.body.allowComment){
+        allowComment = true;
+    }
     const newRecipe = {
         title: req.body.title,
         body: req.body.body,
         status: req.body.status,
-        allowComments: allowComments,
+        allowComment: allowComment,
         user: req.user.id
     }
     new Recipe(newRecipe)
@@ -79,19 +82,7 @@ function show (req, res) {
             status: recipe.status,
             date: recipe.date,
             allowComment: recipe.allowComment,
-            user: req.user,
+            user: recipe.user,
         })
     })
 };
-
-// function show(req, res) {
-//     Recipe.findById(req.params.id, function (err, recipe) {
-//         res.render('recipes/show', { 
-//             title: recipe.title,
-//             body: recipe.body,
-//             status: recipe.status,
-//             date: recipe.date,
-//             user: req.user
-//         });
-//     })
-// };

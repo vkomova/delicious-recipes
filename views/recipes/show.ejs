@@ -1,23 +1,78 @@
-<%- include('../partials/header') %>
+<!DOCTYPE html>
+<html>
 
-<div>
+<head>
+    <title>Paleo Recipe Login Page</title>
+    <!-- Google Icon Fonts used by Materialize -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Materialize CSS Framework -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="stylesheets/style.css" />
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+        integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <!-- JavaScript for Materialize -->
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script defer src="https://code.jquery.com/jquery-3.3.1.js"
+        integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+</head>
+
+<body style="padding: 50px;
+font: 14px 'Lucida Grande', Helvetica, Arial, sans-serif;
+display: flex;
+min-height: 100vh;
+flex-direction: column;">
+    <nav class="grey darken-3">
+        <div class="container">
+            <div class="naw-wrapper">
+                <a href="/" class="brand-logo center">Recipes</a>
+                <a href="#" data-activates="main-menu" class="button-collapse show-on-large"></a>
+                <ul class="right hide-on-small-only">
+                    <% if (user) { %>
+                    <li><a href="/dashboard">Welcome <%= user.name %></a></li>
+                    <li><a href="/logout">Logout</a></li>
+                    <% } else { %>
+                    <li><a href="/recipes">Shared Recipes</a></li>
+                    <% } %>
+                </ul>
+                <ul class="side-nav" id="main-menu">
+                    <li>
+                        <% if (user) { %>
+                    <li class="divider"></li>
+                    <li><a href="/dashboard">Dashboard</a></li>
+                    <li><a href="/recipes">Shared Recipes</a></li>
+                    <% } else { %>
+                    <li>
+                        <a href="/auth/google" class="btn red darken-1"><i class="material-icons left">vpn_key</i>Login
+                            with Google</a>
+                    </li>
+                    <% } %>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
     <h3><%= title %></h3>
-</div>
-<div>
+
     <p><%- body %></p>
     Submitted on <%= date %><br>
     By <%= user.name %><br><br>
-</div>
 
 
-<% if (allowComment) { %>
+    <% if (allowComment) { %>
     <p>
-    Comments:
+        Comments:
+        <% if (user) { %>
+        Can leave comment.
+        <% } else { %>
+        Please <a href="/auth/google">login </a> to leave a comment.
+        <% } %>
     </p>
-<% } else { %>
+    <% } else { %>
     <p>No comments allowed.</p>
-<% } %><br><br>
+    <% } %><br><br>
 
-    
-  
+
+
+
 <%- include('../partials/footer') %>
