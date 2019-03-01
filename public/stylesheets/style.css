@@ -22,13 +22,19 @@ main {
   font-size: 16px;
 }
 
+#video {
+  display: inline-block;
+  margin: 0 auto;
+  text-align: center;
+}
+
 #about {
   width: 50%;
   height: auto;
 }
 
 #welcome {
-  width: 75%;
+  width: 560px;
   height: auto;
 }
 
