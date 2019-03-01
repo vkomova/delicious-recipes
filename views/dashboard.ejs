@@ -8,12 +8,9 @@
 
 <% } %>
 
-
-
 <% if (recipe.length > 0) { %>
     <% recipe.forEach(function(r) { %>
         <h5><%= r.title %></h5>
-        <%- r.body %>
         Status <%= r.status %><br>
         Added on <% var gIndex = r.date.toString().split('').indexOf("G") %>
         <% gIndex %>
@@ -21,7 +18,7 @@
         <a href="/recipes/edit/<%=r._id%>"><i class="fa fa-pencil"></i>Edit</a>
         <a href="/recipes/show/<%=r._id%>">Show</a>
         <form action="/recipes/<%=r._id%>?_method=DELETE" method="POST" id="delete-form">
-            <button type="submit" class="btn red"><i class="fa fa-remove"></i>Delete</button>
+        <button type="submit" class="btn red"><i class="fa fa-remove"></i>Delete</button>
         </form><br><br>
         <% }); %>
 <% } else { %>

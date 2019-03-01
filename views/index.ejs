@@ -1,34 +1,17 @@
 <%- include('./partials/header') %>
 
-
 <br><br>
 <div class="video">
-    <h1>Welcome to eRecipebook!</h1>
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/DUV176VZ3Uo" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe><br>
+  <h1>Welcome to eRecipebook!</h1>
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/DUV176VZ3Uo" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe><br>
   <p>Discover delicious recipes! Or create your own. Set them to public or private and comment on others' receipes.</p><br>
   <img src="https://m.media-amazon.com/images/S/aplus-media/vc/1a89ae5c-878e-48a1-815c-fc0c2c0602bb.jpg" alt="Welcome Picture" id="welcome">
 </div>
 
-    <div class="navbar-fixed">
+<% if (user) { %>
+  <%- include('./partials/addrecipe') %>
+<% } else { %>
 
-    </div>
-    <% if (user) { %>
-      <%- include('./partials/addrecipe') %>
-    <% } else { %>
+<% } %>
 
-    <% } %>
-  
-
-  <%- include('./partials/footer') %>
-  
-  <script>
-    $(document).ready(() => {
-      $('.button-collapse').sideNav();
-      $('select').material_select();
-    });
-  </script>
-  
-  <script
-  src="https://code.jquery.com/jquery-3.3.1.js"
-  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
-  crossorigin="anonymous"></script>
+<%- include('./partials/footer') %>

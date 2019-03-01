@@ -3,16 +3,20 @@
 <h1>Recipes</h1>
 <body>
     <% recipes.forEach(function(r) { %>
-    <h5><%= r.title %></h5>
-    <%- r.body %><br>
-    Added on <% var gIndex = r.date.toString().split('').indexOf("G") %>
+        <h5><%= r.title %></h5>
+        Added on <% var gIndex = r.date.toString().split('').indexOf("G") %>
         <% gIndex %>
         <%= r.date.toString().slice(0, gIndex) %><br>
-    By <%= r.user.name %><br>
-    <a href="/recipes/show/<%=r._id%>">View Recipe</a><br>
-    <br>
+        By <%= r.user.name %>
+        <a href="/recipes/show/<%=r._id%>">View Recipe</a><br>
+        <br>
     <% }); %>
 </body>
     
-  
+<% if (user) { %>
+    <%- include('../partials/addrecipe') %>
+<% } else { %>
+
+<% } %>
+
 <%- include('../partials/footer') %>

@@ -1,0 +1,13 @@
+<h1>Recipes</h1>
+<body>
+    <% recipe.forEach(function(r) { %>
+    <h5><%= r.title %></h5>
+    <%- r.body %><br>
+    Added on <% var gIndex = r.date.toString().split('').indexOf("G") %>
+        <% gIndex %>
+        <%= r.date.toString().slice(0, gIndex) %><br>
+    <a href="recipes/userview/<%=r.user._id%>">More by <%= r.user.name %></a><br>
+    <a href="/recipes/show/<%=r._id%>">View Recipe</a><br>
+    <br>
+    <% }); %>
+</body>

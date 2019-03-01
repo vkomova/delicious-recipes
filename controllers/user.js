@@ -5,11 +5,9 @@ module.exports = {
 };
 
 function index(req, res, next) {
-  
     res.render('index', {
       name: req.query.name,
       user: req.user,
-      title: "recipes"
+      title: "Recipebook"
     });
 }
-

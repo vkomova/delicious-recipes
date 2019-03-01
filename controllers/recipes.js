@@ -2,34 +2,58 @@ var Recipe = require('../models/recipe');
 
 module.exports = {
     index,
-    // new: newRecipe,
     create,
     show,
     edit,
     update,
     deleteRecipe,
-    comment
+    comment,
+    userview
 };
 
-function deleteRecipe (req, res) {
+// req.params.userid, req.params.userID ?
+function userview(req, res) {
+    Recipe.find({user:req.params.userId, status: 'public'})
+    .populate('user')
+    .then(recipe => {
+      res.render('recipes/userview'), {
+        recipe: recipe,
+        title: recipe.title,
+        body: recipe.body,
+        status: recipe.status,
+        date: recipe.date,
+        allowComment: recipe.allowComment,
+        user: req.user.id,
+        user2: recipe.user,
+        comments: recipe.comments
+        }
+    });
+};
+
+function deleteRecipe(req, res) {
     Recipe.findByIdAndDelete(req.params.id)
     .then(function(recipe) {
         res.redirect('/dashboard')
     })
 };
 
-function edit (req, res) {
+function edit(req, res) {
     Recipe.findOne({_id: req.params.id})
-    .then(recipes => {
-        res.render('recipes/edit', { 
-            recipes: recipes
-        })
-    })
+    .then(recipe => {
+        if(recipe.user != req.user.id){
+            res.redirect('/dashboard');
+        } else {
+            res.render('recipes/edit', { 
+            recipes: recipe
+        });
+        }
+    });
 };
 
 function index(req, res) {
     Recipe.find({status:'public'})
         .populate('user')
+        .sort ({date: 'asc'})
         .then(recipes => {
             res.render('recipes/index', {
                 user: req.user,
@@ -74,17 +98,39 @@ function show (req, res) {
     .populate('user')
     .populate('comments.commentUser')
     .then(recipe => {
-        res.render('recipes/show', { 
-            recipe: recipe,
-            title: recipe.title,
-            body: recipe.body,
-            status: recipe.status,
-            date: recipe.date,
-            allowComment: recipe.allowComment,
-            user: recipe.user,
-            user2: req.user,
-            comments: recipe.comments
-        })
+        if(recipe.status == 'public') {
+            res.render('recipes/show', { 
+                recipe: recipe,
+                title: recipe.title,
+                body: recipe.body,
+                status: recipe.status,
+                date: recipe.date,
+                allowComment: recipe.allowComment,
+                user: recipe.user,
+                user2: req.user,
+                comments: recipe.comments
+            });
+        } else {
+            if(req.user) {
+                if(req.user.id == recipe.user._id){
+                    res.render('recipes/show', { 
+                        recipe: recipe,
+                        title: recipe.title,
+                        body: recipe.body,
+                        status: recipe.status,
+                        date: recipe.date,
+                        allowComment: recipe.allowComment,
+                        user: recipe.user,
+                        user2: req.user,
+                        comments: recipe.comments
+                    });
+                } else {
+                    res.redirect('recipes/index');
+                }
+            } else {
+                res.redirect('/');
+            }
+        }
     })
 };
 

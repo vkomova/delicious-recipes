@@ -18,10 +18,6 @@ router.get('/about', function(req, res, next) {
   res.render('about', {user: req.user});
 });
 
-// router.get('/dashboard', ensureAuthenticated, function(req, res, next) {
-//   res.render('dashboard', {user: req.user});
-// });
-
 router.get('/dashboard', ensureAuthenticated, function(req, res, next) {
   Recipe.find({user:req.user.id})
   .then(function(recipe) {
