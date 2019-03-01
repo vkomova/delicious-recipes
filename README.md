@@ -14,7 +14,9 @@ Recipebook was imagined, designed, and developed in Santa Monica, CA for General
 
 
 ## Screenshot
-![Recipebook Screenshot](https://i.imgur.com/4pmXK8R.png "Recipebook Screenshot")  
+![Recipebook Welcome Page](https://i.imgur.com/1qXdBdP.png "Recipebook Welcome Page")  
+![Recipebook Dashboard](https://i.imgur.com/GUmArac.png "Dashboard")  
+![Sample Recipe](https://i.imgur.com/xptnJgD.png "Sample Recipe")  
 
 
 ## Technologies Used
