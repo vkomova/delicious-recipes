@@ -25,15 +25,16 @@ Recipebook was imagined, designed, and developed in Santa Monica, CA for General
 * HTML5
 * CSS3
 * JavaScript
-* ejs
 * Node.js
+* Express
+* ejs
+* dotenv
 * Mongoose
 * MongoDB
-* Express.js
+* RESTful APIs, CRUD
+* oAuth, Passport
 * Mongo ATLAS
 * Heroku
-* oAuth
-* RESTful APIs
 * Trello - click [here](https://trello.com/b/F2itMzfQ) for Trello planning/mapping board
 
 
