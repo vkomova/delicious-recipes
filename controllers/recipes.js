@@ -72,10 +72,7 @@ function update (req, res) {
 function show (req, res) {
     Recipe.findOne({_id: req.params.id})
     .populate('user')
-    // .populate({
-    //     path: 'comments',
-    //     populate: 'commentUser'
-    // })
+    .populate('comments.commentUser')
     .then(recipe => {
         res.render('recipes/show', { 
             recipe: recipe,

@@ -79,11 +79,11 @@ flex-direction: column;">
     <p>No comments allowed.</p>
     <% } %><br>
 
-
     <% recipe.comments.forEach(function(c) { %>
         <p>Previous comments:<br>
             <%= c.commentBody %><br>
-        by <%= c.commentUser %><br>
+        by <%= c.commentUser.name %><br>
+        <img src="<%= c.commentUser.image %>" class="profile" height="auto" width="25%"><br>
         <% var gIndex = c.commentDate.toString().split('').indexOf("G") %>
         <% gIndex %>
         Comment left on <%= c.commentDate.toString().slice(0, gIndex) %><br>

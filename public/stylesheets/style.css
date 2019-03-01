@@ -22,8 +22,13 @@ main {
   font-size: 16px;
 }
 
-img {
+#about {
   width: 50%;
+  height: auto;
+}
+
+#welcome {
+  width: 75%;
   height: auto;
 }
 
@@ -31,6 +36,11 @@ img {
   display: inline-grid;
   justify-self: center;
   align-self: center;
+}
+
+.profile img {
+  width: 33%;
+  height: auto;
 }
 
 .myButton {
