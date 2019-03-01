@@ -22,7 +22,7 @@ main {
   font-size: 16px;
 }
 
-#video {
+.video {
   display: inline-block;
   margin: 0 auto;
   text-align: center;
