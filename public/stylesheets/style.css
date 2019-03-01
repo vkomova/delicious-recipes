@@ -15,11 +15,17 @@ main {
 }
 
 #addbody {
-  background-image: url("http://www.zingerbug.com/Backgrounds/background_images/starry_sky_glitter_background_seamless.gif");
-  background-repeat: repeat;
-  font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+  /* background-image: url("http://www.zingerbug.com/Backgrounds/background_images/starry_sky_glitter_background_seamless.gif");
+  background-repeat: repeat; */
+  align-content: center;
+  padding: 40px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   color : #f88379;
   font-size: 16px;
+  border-style: solid;
+  border-width: 3px;
+  border-color: #424242;
+  border-radius: 50px;
 }
 
 .video {
