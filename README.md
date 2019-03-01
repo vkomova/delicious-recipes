@@ -42,7 +42,7 @@ Please visit https://wdi-delicious-recipes.herokuapp.com/ to try out my app!
 
 
 ## Next Steps
-For next steps, I would like to optimize the app for mobile viewing as well as ~~add an option to upload photos~~ and search across recipes for key words.  
+For next steps, I would like to optimize the app for mobile viewing ~~as well as add an option to upload photos~~ and search across recipes for key words.  
 https://github.com/vkomova/delicious-recipes
 
 
